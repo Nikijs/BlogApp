@@ -4,7 +4,7 @@ var path = require('path');
 var bodyParser = require('body-parser');
 
 var mongoose = require('mongoose');
-var mongoDB = 'mongodb://admin:hello123@ds239903.mlab.com:39903/lab5';
+var mongoDB = 'mongodb://Nikijs:pass123@ds141783.mlab.com:41783/nikidb'; //login to database
 mongoose.connect(mongoDB);
 
 var Schema = mongoose.Schema;
@@ -12,7 +12,9 @@ var postSchema = new Schema({
     title: String,
     content: String
 })
+
 var PostModel = mongoose.model('post', postSchema);
+
 
 
 //Here we are configuring express to use body-parser as middle-ware. 
@@ -27,11 +29,7 @@ app.use(function(req, res, next) {
     next();
     });
     
-app.post('/name', function(req, res){
-    res.send("Hello you sent " +
-    req.body.firstname + " " +
-    req.body.lastname);
-})
+
 
 app.get('/', function (req, res) {
    res.send('Hello from Express');
@@ -56,7 +54,14 @@ app.get('/api/posts', function(req, res){
         res.json(data);
     });
 })
-
+app.get('/api/admin:id', function(req, res){
+    PostModel.find(function(err, data){
+        console.log("Update Post" +req.params.id);
+        console.log(req.body.title);
+        console.log(req.body.content)
+        res.json(data);
+    });
+})
 app.get('/api/posts/:id', function(req, res){
     console.log("Read post " +req.params.id);
 

@@ -6,7 +6,7 @@ import {PostService} from './services/post.service';
 import {HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes} from '@angular/router';
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatInputModule,
   MatMenuModule,
   MatCardModule,
@@ -16,6 +16,8 @@ import { MatInputModule,
   MatExpansionModule} from '@angular/material';
 import { PostCreateComponent } from './post-create/post-create.component';
 import { PostEditComponent } from './post-edit/post-edit.component';
+import { LoginComponent } from './login/login.component';
+
 
 const appRoutes: Routes = [
   {
@@ -29,7 +31,16 @@ const appRoutes: Routes = [
   {
     path: 'edit/:id',
     component: PostEditComponent
-  }
+  },
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  { path: '',
+    redirectTo: '/login',
+    pathMatch: 'full'
+  },
+  { path: '**', redirectTo: '' } //set as home path
 ];
 
 
@@ -38,12 +49,14 @@ const appRoutes: Routes = [
     AppComponent,
     PostDetailsComponent,
     PostCreateComponent,
-    PostEditComponent
+    PostEditComponent,
+    LoginComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     MatIconModule,
     MatButtonModule,
@@ -53,7 +66,7 @@ const appRoutes: Routes = [
   MatButtonModule,
   MatToolbarModule,
   MatExpansionModule,
-  MatMenuModule
+  MatMenuModule,
   ],
   providers: [PostService],
   bootstrap: [AppComponent]

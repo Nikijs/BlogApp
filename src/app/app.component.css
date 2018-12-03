@@ -1,1 +1,15 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+.title-center{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    color: rgb(26, 2, 23);
+    font-weight: 600;
+    font-size: 150%
+}
+.buttons{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
